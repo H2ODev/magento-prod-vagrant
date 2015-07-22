@@ -14,7 +14,7 @@ apt-get install -y apache2
 apt-get install -y php5
 apt-get install -y libapache2-mod-php5
 apt-get install -y php5-mysqlnd php5-curl php5-xdebug php5-gd php5-intl php-pear php5-imap php5-mcrypt php5-ming php5-ps php5-pspell php5-recode php5-sqlite php5-tidy php5-xmlrpc php5-xsl php-soap
-apt-get install -y git
+apt-get install -y git ruby1.9.1-dev build-essential g++ libsqlite3-dev
 
 php5enmod mcrypt
 
@@ -121,3 +121,10 @@ cd /vagrant/httpdocs
 wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar
 chmod +x ./n98-magerun.phar
 sudo mv ./n98-magerun.phar /bin/n98
+
+# Install Mailcatcher
+
+sudo gem install mailcatcher
+sudo sed -i '/sendmail_path/c\sendmail_path = /usr/bin/env catchmail -f mail@magento.dev' /etc/php5/cli/php.ini
+sudo sed -i '/sendmail_path/c\sendmail_path = /usr/bin/env catchmail -f mail@magento.dev' /etc/php5/apache2/php.ini
+mailcatcher --http-ip=0.0.0.0
