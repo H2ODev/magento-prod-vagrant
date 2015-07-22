@@ -13,6 +13,9 @@ A VERY simple Magento environment provisioner for [Vagrant](http://www.vagrantup
 * Automatically runs [n98-magerun](https://github.com/netz98/n98-magerun) installer.
 * Perfect for rapid development or extension testing with an unopionionated, bare-bones and easily tweaked configuration.
 * Goes from naught-to-Magento in a couple of minutes.
+* Mailcatcher
+* Modman
+* N98-Magerun (aliased as n98)
 
 ## Getting Started
 
@@ -55,8 +58,8 @@ Sample data installation can be disabled:
  * Ensure `sample_data = "true"`
  * The provisioning script will skip the download and use the provided file instead. The same goes for when the provisioner is rerun. e.g. `vagrant reload --provision`
 
-## Todo
-* Install Modman.
+## Mailcatcher
+* to start mailcatcher type: `mailcatcher --http-ip=0.0.0.0`
 
 **Why no Puppet/Chef?**
 Admittedly, Puppet and Chef are excellent solutions for predictable and documented system configurations. The emphasis for this provisioner is on unopinionated simplicity. There are some excellent Puppet / Chef Magento configurations on Github with far more bells and whistles.
