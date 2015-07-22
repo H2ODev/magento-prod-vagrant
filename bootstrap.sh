@@ -13,7 +13,8 @@ apt-get update
 apt-get install -y apache2
 apt-get install -y php5
 apt-get install -y libapache2-mod-php5
-apt-get install -y php5-mysqlnd php5-curl php5-xdebug php5-gd php5-intl php-pear php5-imap php5-mcrypt php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl php-soap
+apt-get install -y php5-mysqlnd php5-curl php5-xdebug php5-gd php5-intl php-pear php5-imap php5-mcrypt php5-ming php5-ps php5-pspell php5-recode php5-sqlite php5-tidy php5-xmlrpc php5-xsl php-soap
+apt-get install -y git
 
 php5enmod mcrypt
 
@@ -109,10 +110,14 @@ if [ ! -f "/vagrant/httpdocs/app/etc/local.xml" ]; then
   --admin_username admin --admin_password password123123
   /usr/bin/php -f shell/indexer.php reindexall
 fi
+# Install modman
+# --------------------
+bash < <(wget -q --no-check-certificate -O - https://raw.github.com/colinmollenhour/modman/master/modman-installer)
+sudo mv /home/$HOME/bin/modman /bin/
 
 # Install n98-magerun
 # --------------------
 cd /vagrant/httpdocs
 wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar
 chmod +x ./n98-magerun.phar
-sudo mv ./n98-magerun.phar /usr/local/bin/
+sudo mv ./n98-magerun.phar /bin/n98
