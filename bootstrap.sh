@@ -112,15 +112,29 @@ if [ ! -f "/vagrant/httpdocs/app/etc/local.xml" ]; then
 fi
 # Install modman
 # --------------------
-bash < <(wget -q --no-check-certificate -O - https://raw.github.com/colinmollenhour/modman/master/modman-installer)
-sudo mv /home/$HOME/bin/modman /bin/
+SRC="https://raw.githubusercontent.com/colinmollenhour/modman/master/modman"
+DEST="/bin/modman"
+
+# test if curl/wget is installed
+if hash curl 2>&- ; then
+    CMD="curl -s -L $SRC -o $DEST"
+elif hash wget 2>&- ; then
+    CMD="wget -q --no-check-certificate -O $DEST $SRC"
+else
+   echo "You need to have curl or wget installed."
+   exit 1
+fi
+
+sudo $CMD
+
+sudo chmod +x $DEST
 
 # Install n98-magerun
 # --------------------
 cd /vagrant/httpdocs
 wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar
-chmod +x ./n98-magerun.phar
 sudo mv ./n98-magerun.phar /bin/n98
+chmod +x /bin/n98
 
 # Install Mailcatcher
 
