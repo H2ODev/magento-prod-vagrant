@@ -135,10 +135,3 @@ cd /vagrant/httpdocs
 wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar
 sudo mv ./n98-magerun.phar /bin/n98
 chmod +x /bin/n98
-
-# Install Mailcatcher
-
-sudo gem install mailcatcher
-sudo sed -i '/sendmail_path/c\sendmail_path = /usr/bin/env catchmail -f mail@magento.dev' /etc/php5/cli/php.ini
-sudo sed -i '/sendmail_path/c\sendmail_path = /usr/bin/env catchmail -f mail@magento.dev' /etc/php5/apache2/php.ini
-mailcatcher --http-ip=0.0.0.0

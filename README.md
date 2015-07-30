@@ -1,4 +1,4 @@
-simple-magento-vagrant
+magento-prod-vagrant
 ======================
 
 A VERY simple Magento environment provisioner for [Vagrant](http://www.vagrantup.com/).
@@ -34,7 +34,6 @@ Vagrant will configure the base system before downloading Magento and running th
 
 * In your browser, head to `127.0.0.1:8080`
 * Magento CMS is accessed at `127.0.0.1:8080/admin`
-* Mailcatcher is accessed at `127.0.0.1:8081`
 * User: `admin` Password: `password123123`
 * Access the virtual machine directly using `vagrant ssh`
 * When you're done `vagrant halt`
@@ -59,8 +58,6 @@ Sample data installation can be disabled:
  * Ensure `sample_data = "true"`
  * The provisioning script will skip the download and use the provided file instead. The same goes for when the provisioner is rerun. e.g. `vagrant reload --provision`
 
-## Mailcatcher
-* to start mailcatcher type: `mailcatcher --http-ip=0.0.0.0`
 
 **Why no Puppet/Chef?**
 Admittedly, Puppet and Chef are excellent solutions for predictable and documented system configurations. The emphasis for this provisioner is on unopinionated simplicity. There are some excellent Puppet / Chef Magento configurations on Github with far more bells and whistles.
